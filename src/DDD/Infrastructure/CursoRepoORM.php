@@ -9,6 +9,7 @@ use App\DDD\Domain\Curso;
 use App\DDD\Domain\CursoRepository;
 use App\DDD\Domain\Exceptions\cannotCreateCursoException;
 use App\DDD\Domain\IdCurso;
+use App\DDD\Domain\NombreCurso;
 use App\Repository\CursoRepository as ORMCursoRepository;
 use Doctrine\Common\Persistence\ObjectRepository;
 
@@ -36,11 +37,15 @@ class CursoRepoORM implements CursoRepository
      */
     public function find(\App\DDD\Domain\IdCurso $id): Curso
     {
+        /** @var \App\Entity\Curso $match */
         $match = $this->repo->find($id->value());
         if (null === $match) {
             throw new \App\DDD\Domain\Exceptions\cannotFindCursoException();
         }
-        return new Curso($match->getName());
+        return new Curso(
+            new IdCurso($match->getId()),
+            new NombreCurso($match->getName())
+        );
     }
 
     /**
