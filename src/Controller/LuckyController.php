@@ -35,7 +35,7 @@ class LuckyController extends AbstractController
                 (new CursoFinder(
                     new CursoRepoORM( $this->getDoctrine()->getRepository(\App\Entity\Curso::class) )
 //                    new CursoRepoFake()
-                ))(new CursoFinderQuery(1))->getName()
+                ))(new CursoFinderQuery(1))->nombreCurso()->value()
             );
         } catch (cannotFindCursoException $e) {
             dump($e);

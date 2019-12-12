@@ -19,7 +19,7 @@ interface CursoRepository
      * @param \App\DDD\Domain\IdCurso $id
      * @return \App\DDD\Domain\Curso finded
      */
-    public function find(IdCurso $id) : Curso;
+    public function find(IdCurso $id) : ?Curso;
 
     /**
      * @throws CannotUpdateCursoException

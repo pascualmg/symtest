@@ -5,30 +5,21 @@ namespace App\DDD\Domain;
 
 class Curso
 {
-    private $name;
+    /** @var NombreCurso */
+    private $nombreCurso;
 
     /**
-     * @return string
+     * @return NombreCurso
      */
-    public function getName(): string
+    public function nombreCurso(): NombreCurso
     {
-        return $this->name;
+        return $this->nombreCurso;
     }
 
-    public function __construct(string $name)
+    public function __construct(NombreCurso $nombreCurso)
     {
-        $this->name = $name;
-
+        $this->nombreCurso = $nombreCurso;
     }
 
 
-    public function __sleep()
-    {
-        // TODO: Implement __sleep() method.
-        return array('name');
-    }
-    public function __wakeup()
-    {
-        dump('me levanto maikel');
-    }
 }
