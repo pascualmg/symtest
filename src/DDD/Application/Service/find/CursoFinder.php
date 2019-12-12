@@ -3,7 +3,7 @@
 namespace App\DDD\Application\Service\find;
 
 
-use App\DDD\Domain\Exceptions\cannotFindCursoException;
+use App\DDD\Domain\Exceptions\CannotFindCursoException;
 use App\DDD\Domain\CursoRepository;
 use App\DDD\Domain\Curso;
 
@@ -20,10 +20,15 @@ class CursoFinder
     /**
      * @param CursoFinderQuery $query
      * @return Curso
-     * @throws cannotFindCursoException
+     * @throws CannotFindCursoException
      */
     public function __invoke(CursoFinderQuery $query)
     {
-        return $this->repo->find($query->id());
+        /** @var Curso $finded */
+        $finded = $this->repo->find($query->id());
+        if (null === $finded) {
+          throw new CannotFindCursoException();
+        }
+        return $finded;
     }
 }

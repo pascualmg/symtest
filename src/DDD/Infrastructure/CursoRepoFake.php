@@ -4,7 +4,7 @@
 namespace App\DDD\Infrastructure;
 
 
-use App\DDD\Domain\Exceptions\cannotFindCursoException;
+use App\DDD\Domain\Exceptions\CannotFindCursoException;
 use App\DDD\Domain\Curso;
 use App\DDD\Domain\CursoRepository;
 use App\DDD\Domain\Exceptions\cannotCreateCursoException;

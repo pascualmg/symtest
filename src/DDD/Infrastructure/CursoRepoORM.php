@@ -2,15 +2,10 @@
 
 namespace App\DDD\Infrastructure;
 
-use App\DDD\Domain\CannotDeleteCursoException;
-use App\DDD\Domain\cannotFindCursoException;
-use App\DDD\Domain\CannotUpdateCursoException;
 use App\DDD\Domain\Curso;
 use App\DDD\Domain\CursoRepository;
-use App\DDD\Domain\Exceptions\cannotCreateCursoException;
 use App\DDD\Domain\IdCurso;
 use App\DDD\Domain\NombreCurso;
-use App\Repository\CursoRepository as ORMCursoRepository;
 use Doctrine\Common\Persistence\ObjectRepository;
 
 class CursoRepoORM implements CursoRepository
@@ -27,7 +22,7 @@ class CursoRepoORM implements CursoRepository
     /**
      * @inheritDoc
      */
-    public function create(\App\DDD\Domain\Curso $curso): void
+    public function create(Curso $curso): void
     {
         // TODO: Implement create() method.
     }
@@ -35,23 +30,24 @@ class CursoRepoORM implements CursoRepository
     /**
      * @inheritDoc
      */
-    public function find(\App\DDD\Domain\IdCurso $id): Curso
+    public function find(IdCurso $id): ?Curso
     {
         /** @var \App\Entity\Curso $match */
         $match = $this->repo->find($id->value());
-        if (null === $match) {
-            throw new \App\DDD\Domain\Exceptions\cannotFindCursoException();
-        }
-        return new Curso(
-            new IdCurso($match->getId()),
-            new NombreCurso($match->getName())
-        );
+        return
+            (null === $match) ?
+                null
+                :
+                new Curso(
+                    new IdCurso($match->getId()),
+                    new NombreCurso($match->getName())
+                );
     }
 
     /**
      * @inheritDoc
      */
-    public function update(\App\DDD\Domain\Curso $curso): void
+    public function update(Curso $curso): void
     {
         // TODO: Implement update() method.
     }
@@ -59,7 +55,7 @@ class CursoRepoORM implements CursoRepository
     /**
      * @inheritDoc
      */
-    public function delete(\App\DDD\Domain\IdCurso $id): void
+    public function delete(IdCurso $id): void
     {
         // TODO: Implement delete() method.
     }
