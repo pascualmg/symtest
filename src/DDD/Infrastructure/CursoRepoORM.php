@@ -24,7 +24,7 @@ class CursoRepoORM implements CursoRepository
      */
     public function create(Curso $curso): void
     {
-        // TODO: Implement create() method.
+
     }
 
     /**

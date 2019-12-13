@@ -7,7 +7,7 @@ namespace App\DDD\Infrastructure;
 use App\DDD\Domain\Exceptions\CannotFindCursoException;
 use App\DDD\Domain\Curso;
 use App\DDD\Domain\CursoRepository;
-use App\DDD\Domain\Exceptions\cannotCreateCursoException;
+use App\DDD\Domain\Exceptions\CannotCreateCursoException;
 use App\DDD\Domain\IdCurso;
 
 class CursoRepoFake implements CursoRepository

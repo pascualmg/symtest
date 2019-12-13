@@ -4,12 +4,11 @@ namespace App\Controller;
 
 use App\DDD\Application\Service\find\CursoFinder;
 use App\DDD\Application\Service\find\CursoFinderQuery;
-use App\DDD\Domain\Exceptions\cannotFindCursoException;
-use App\DDD\Infrastructure\CursoRepoFake;
+use App\DDD\Domain\Exceptions\CannotFindCursoException;
 use App\DDD\Infrastructure\CursoRepoORM;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class LuckyController extends AbstractController
@@ -33,13 +32,14 @@ class LuckyController extends AbstractController
             //retorna el nombre del curso 1
             return new JsonResponse(
                 (new CursoFinder(
-                    new CursoRepoORM( $this->getDoctrine()->getRepository(\App\Entity\Curso::class) )
+                    new CursoRepoORM($this->getDoctrine()->getRepository(\App\Entity\Curso::class))
 //                    new CursoRepoFake()
                 ))(new CursoFinderQuery(1))->nombreCurso()->value()
             );
-        } catch (cannotFindCursoException $e) {
-            dump($e);
+        } catch (CannotFindCursoException $e) {
             return new JsonResponse($e->getMessage());
+        } catch (\Exception $exception) {
+            return new JsonResponse('unknown exception maikel');
         }
     }
 }

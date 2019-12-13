@@ -2,20 +2,21 @@
 
 namespace App\DDD\Domain;
 
-use App\DDD\Domain\Curso;
-use App\DDD\Domain\IdCurso;
-use App\DDD\Domain\Exceptions\cannotCreateCursoException;
+use App\DDD\Domain\Exceptions\CannotCreateCursoException;
+use App\DDD\Domain\Exceptions\CannotDeleteCursoException;
+use App\DDD\Domain\Exceptions\CannotFindCursoException;
+use App\DDD\Domain\Exceptions\CannotUpdateCursoException;
 
 interface CursoRepository
 {
     /**
      * @param \App\DDD\Domain\Curso $curso To Create
-     *@throws cannotCreateCursoException
+     *@throws CannotCreateCursoException
      */
     public function create(Curso $curso) : void;
 
     /**
-     * @throws cannotFindCursoException
+     * @throws CannotFindCursoException
      * @param \App\DDD\Domain\IdCurso $id
      * @return \App\DDD\Domain\Curso finded
      */
