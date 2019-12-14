@@ -3,7 +3,6 @@
   "license": "proprietary",
   "require": {
     "php": "^7.2.5",
-    "phpunit/dbunit": "4.0.*",
     "ext-ctype": "*",
     "ext-iconv": "*",
     "ext-json": "*",

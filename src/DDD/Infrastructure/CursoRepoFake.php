@@ -4,11 +4,9 @@
 namespace App\DDD\Infrastructure;
 
 
-use App\DDD\Domain\Exceptions\CannotFindCursoException;
 use App\DDD\Domain\Curso;
 use App\DDD\Domain\CursoRepository;
-use App\DDD\Domain\Exceptions\CannotCreateCursoException;
-use App\DDD\Domain\IdCurso;
+use App\DDD\Domain\NombreCurso;
 
 class CursoRepoFake implements CursoRepository
 {
@@ -16,7 +14,7 @@ class CursoRepoFake implements CursoRepository
     /**
      * @inheritDoc
      */
-    public function create(\App\DDD\Domain\Curso $curso): void
+    public function create(NombreCurso $curso): void
     {
         // TODO: Implement create() method.
     }

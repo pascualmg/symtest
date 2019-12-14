@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\CursoRepository")
+ */
+class Curso
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $cosa;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCosa(): ?string
+    {
+        return $this->cosa;
+    }
+
+    public function setCosa(?string $cosa): self
+    {
+        $this->cosa = $cosa;
+
+        return $this;
+    }
+}
